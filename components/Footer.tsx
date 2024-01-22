@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import ClickHandlers from "./ClickHandlers";
 
 function Footer() {
   return (
@@ -15,10 +16,12 @@ function Footer() {
           <div className="flex h-full">
             <div className="flex-grow" />
             <div className="flex items-center">
-              <a href="/login" className="mx-5">
-                Pricing
-              </a>
-              <a href="/register" className="mx-5">
+              <ClickHandlers
+                text="Pricing"
+                message="Currently ReconSwift is free!"
+                styles="mx-5 cursor-pointer"
+              />
+              <a href="/signup" className="mx-5">
                 Login
               </a>
               <a href="/register" className="mx-5">
