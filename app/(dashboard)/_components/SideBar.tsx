@@ -11,8 +11,8 @@ import React from "react";
 
 function SideBar() {
   return (
-    <div className="flex flex-col justify-between  h-full">
-      <div className="flex flex-col justify-between h-96 mt-6 px-6">
+    <aside className="flex flex-col justify-between  h-full">
+      <div className="flex flex-col justify-between h-80 mt-6 px-6">
         <div>
           <div className="active w-4 h-4 rounded-full bg-gradient-to-r from-blue-700 to-sky-600 absolute mt-3 -ml-8"></div>
           <svg
@@ -53,7 +53,7 @@ function SideBar() {
       <div className="profile scale-125 ml-8  ">
         <UserButton afterSignOutUrl="/" />
       </div>
-    </div>
+    </aside>
   );
 }
 
