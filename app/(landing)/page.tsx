@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Globe2, Search, ShieldCheck, User } from "lucide-react";
 import React from "react";
 import UserButtons from "./_components/UserButtons";
+import ClickHandlers from "@/components/ClickHandlers";
+import Link from "next/link";
 
 function Home() {
   return (
@@ -27,9 +29,11 @@ function Home() {
           <span>Test the Web Safely with</span>
           <span className="font-semibold"> ReconSwift.</span>
         </div>
-        <Button className="mt-10 font-semibold text-xl duration-200 p-8 bg-blue-700 hover:bg-sky-600">
-          Get Started
-        </Button>
+        <Link href="/signup">
+          <Button className="mt-10 font-semibold text-xl duration-200 p-8 bg-blue-700 hover:bg-sky-600">
+            Get Started
+          </Button>
+        </Link>
         <div>
           <div className="w-full bg-gray-100 shadow-2xl shadow-blue-700 mt-20">
             <img
@@ -52,9 +56,11 @@ function Home() {
             can efficiently gather crucial information about target websites,
             identify potential vulnerabilities, and generate detailed reports.
           </div>
-          <Button className="mt-24 duration-200 font-semibold  text-xl p-6 px-8 bg-white text-foreground hover:bg-sky-600 hover:text-white">
-            Try Now!
-          </Button>
+          <Link href="/signup">
+            <Button className="mt-24 duration-200 font-semibold  text-xl p-6 px-8 bg-white text-foreground hover:bg-sky-600 hover:text-white">
+              Try Now!
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="w-8/12 mx-auto my-24">
@@ -74,17 +80,20 @@ function Home() {
           tasks, and stay ahead in identifying vulnerabilities for a more secure
           online landscape.
         </div>
-        {/* Make this button align right */}
-        <Button className="my-12 float-right duration-200 font-semibold text-xl p-8 bg-blue-700 hover:bg-sky-600 hover:text-white">
-          Get Pro Now ✨
-        </Button>
+        <ClickHandlers
+          text="Get Pro Now ✨"
+          message="✨ Pro version is free now!"
+          styles="my-12 float-right duration-200 font-semibold text-xl p-8 text-white cursor-pointer bg-blue-700 hover:bg-sky-600 hover:text-white rounded-lg "
+        />
       </div>
       <div className="w-full bg-black text-foreground pt-32 mt-52">
         <div className="w-8/12 mx-auto pb-20">
           <div className="text-6xl font-bold text-white">Enumerate Target?</div>
-          <Button className="mt-10  text-2xl font-semibold  p-10  text-white bg-blue-700 duration-500 hover:bg-white hover:text-black">
-            Get Started Now
-          </Button>
+          <Link href="/signup">
+            <Button className="mt-10  text-2xl font-semibold  p-10  text-white bg-blue-700 duration-500 hover:bg-white hover:text-black">
+              Get Started Now
+            </Button>
+          </Link>
         </div>
 
         <Footer />
