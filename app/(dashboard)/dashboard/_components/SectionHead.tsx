@@ -1,6 +1,10 @@
 import React from "react";
 
-function SectionHead(props) {
+type Props = {
+  title: string;
+};
+
+function SectionHead(props: Props) {
   return (
     <>
       <div className="text-xl font-medium text-foreground pl-3 ">

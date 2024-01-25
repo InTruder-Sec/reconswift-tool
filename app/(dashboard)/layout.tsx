@@ -12,7 +12,7 @@ export default function RootLayout({
       <img
         src="/background.png"
         alt="background"
-        className="fixed z-0 top-0 right-0 h-screen scale-125 opacity-20 pointer-events-none"
+        className="fixed -z-10 top-0 right-0 h-screen scale-125 opacity-20 pointer-events-none"
       />
       <div className="h-screen overflow-hidden">
         <div className="nav flex mx-6 mt-1">
