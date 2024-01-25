@@ -2,19 +2,25 @@
 import React from "react";
 import { toast } from "sonner";
 
-function ClickHandlers({ text, message, styles }) {
+type Props = {
+  text: string;
+  message: string;
+  styles: string;
+};
+
+function ClickHandlers(props: Props) {
   const toastMessage = (message: string) => {
-    toast.info(message);
+    toast.info(props.message);
   };
   return (
-    <div
-      className={styles}
+    <button
+      className={props.styles}
       onClick={() => {
-        toastMessage(message);
+        toastMessage(props.message);
       }}
     >
-      {text}
-    </div>
+      {props.text}
+    </button>
   );
 }
 
