@@ -4,6 +4,7 @@ import {
   BadgeCheck,
   FileSearch,
   GitPullRequestArrow,
+  HardDriveDownload,
   Hourglass,
   ShieldBan,
   Sparkles,
@@ -17,7 +18,7 @@ type Props = {
   subtitle: string;
   icon: ReactElement;
   subIcon: ReactElement;
-  value: number;
+  value: number | string;
 };
 
 const cardData = [
@@ -30,10 +31,10 @@ const cardData = [
   },
   {
     title: "Scanning time",
-    value: 84.69,
-    subtitle: "New scan in queue",
+    value: "84.69M",
+    subtitle: "No scan in progress",
     icon: <Hourglass size={24} />,
-    subIcon: <GitPullRequestArrow size={18} className="mx-2" />,
+    subIcon: <HardDriveDownload size={18} className="mx-2" />,
   },
   {
     title: "Vulnerabilities",
@@ -44,7 +45,7 @@ const cardData = [
   },
   {
     title: "Upgrade for more",
-    value: 0,
+    value: "✨",
     subtitle: "Get detailed analytics!",
     icon: <Sparkles size={24} />,
     subIcon: <BadgeCheck size={18} className="mx-2" />,
@@ -89,16 +90,16 @@ function AnalyticsCardMap() {
 
 function SkeletonCard() {
   return (
-    <div className="flex flex-row flex-wrap m-5">
-      <Skeleton className="w-72 h-28 rounded-md bg-gray-300" />
+    <div className="flex flex-row flex-wrap m-5 mx-auto">
+      <Skeleton className="w-full sm:w-72 h-28 rounded-md bg-gray-300" />
     </div>
   );
 }
 
 function AnalyticsCard(props: Props) {
   return (
-    <section>
-      <div className="col-span-full w-72 xl:col-span-8 bg-white shadow-2xl m-5 rounded-md border border-gray-200">
+    <section className="mx-auto">
+      <div className="hover:scale-105 duration-200  col-span-full w-72 xl:col-span-8 bg-white shadow-2xl  mt-6 sm:m-5 rounded-md border border-gray-200">
         <div className="px-5 pt-5">
           <div className="flex items-center">
             <div className="flex items-center justify-center w-14 h-14 rounded-full bg-indigo-100 text-indigo-500">
