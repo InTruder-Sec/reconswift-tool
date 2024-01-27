@@ -20,7 +20,7 @@ function SideBar() {
   } else if (pathname === "history") {
     margin = "mt-[154px]";
   } else if (pathname === "settings") {
-    margin = "mt-[229px]";
+    margin = "mt-[224px]";
   } else if (pathname === "pro") {
     margin = "mt-[298px]";
   } else {

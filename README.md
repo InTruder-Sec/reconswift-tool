@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# reconswift-tool
 
-## Getting Started
+DiscoverAssessandSecureTest the Web Safely with ReconSwift. ReconSwift the automated reconnaissance platform serves as an indispensable tool for bug bounty hunters by streamlining and expediting the initial phase of their security assessments.
 
-First, run the development server:
+### 🔗 Link
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+[Deploy Link](https://scribblechat.netlify.app)
+
+### 💻 Local Environment
+
+**Front-End**
+
+```
+npm i
+npm start
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Back-End**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+_⚠️Note: You will require a `.env.local` file with the following values_
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    Also change the Project ID
 
-## Learn More
+```
+cd backend
+npm i
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 🛠️ Tech-Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> HTML, CSS, JS, REACT, SOCKET.io AZURE CLOUD, NODE, EXPRESS, MONGODB,
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 🚀 Contribution Guidelines
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I would ❤️ you to contribute to the Playifiyi and help make it better! Let's make open source contributing to be fun, enjoyable, and educational for anyone and everyone. All contributions are welcome, including issues, updates and more.
