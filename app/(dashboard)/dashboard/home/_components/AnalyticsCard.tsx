@@ -91,7 +91,7 @@ function AnalyticsCardMap() {
 function SkeletonCard() {
   return (
     <div className="flex flex-row flex-wrap m-5 mx-auto">
-      <Skeleton className="w-full sm:w-72 h-28 rounded-md bg-gray-300" />
+      <Skeleton className="w-72 h-28 rounded-md bg-gray-300" />
     </div>
   );
 }
