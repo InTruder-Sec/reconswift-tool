@@ -13,12 +13,13 @@ import {
   Component,
   History,
   Menu,
+  MessageSquare,
+  MessageSquareOff,
   Scan,
   ScanLine,
   Settings,
 } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 
 export default function RootLayout({
@@ -54,12 +55,12 @@ export default function RootLayout({
               <SheetTrigger>
                 <Menu size={32} />
               </SheetTrigger>
-              <SheetContent>
+              <SheetContent className="rounded-l-3xl bg-indigo-50">
                 <SheetHeader>
-                  <SheetDescription className="text-black text-xl">
+                  <SheetDescription className="text-black text-xl ">
                     <div className="flex flex-col h-80  mt-32 justify-between">
                       <Link href="/dashboard/home">
-                        <SheetTrigger className="flex">
+                        <SheetTrigger className="flex items-center">
                           <svg
                             width="32"
                             height="32"
@@ -84,27 +85,27 @@ export default function RootLayout({
                         </SheetTrigger>
                       </Link>
                       <Link href="/dashboard/scan">
-                        <SheetTrigger className="flex">
+                        <SheetTrigger className="flex items-center">
                           <ScanLine size={32} />
-                          <div className="ml-2 mt-1 ">New Scan</div>
+                          <div className="ml-2 ">New Scan</div>
                         </SheetTrigger>
                       </Link>
                       <Link href="/dashboard/history">
-                        <SheetTrigger className="flex">
+                        <SheetTrigger className="flex items-center">
                           <History size={32} />
-                          <div className="ml-2 mt-1 ">History</div>
+                          <div className="ml-2">History</div>
                         </SheetTrigger>
                       </Link>
-                      <Link href="/dashboard/settings">
-                        <SheetTrigger className="flex">
-                          <Settings size={32} />
-                          <div className="ml-2 mt-1 ">Settings</div>
+                      <Link href="/dashboard/feedback">
+                        <SheetTrigger className="flex items-center">
+                          <MessageSquare size={32} />
+                          <div className="ml-2 ">Feedback</div>
                         </SheetTrigger>
                       </Link>
                       <Link href="/dashboard/pro">
-                        <SheetTrigger className="flex">
+                        <SheetTrigger className="flex items-center">
                           <Component size={32} />
-                          <div className="ml-2 mt-1 ">Pro</div>
+                          <div className="ml-2 ">Pro</div>
                         </SheetTrigger>
                       </Link>
                     </div>

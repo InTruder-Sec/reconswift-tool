@@ -11,6 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Grid from "../_components/Grid";
+import ClickHandlers from "@/components/ClickHandlers";
 
 function page() {
   return (
@@ -21,7 +23,11 @@ function page() {
           <div className="w-full md:w-1/2 py-1 text-sm">Scan URL:</div>
           <div className="w-full flex">
             <Input placeholder="https://google.com" />
-            <Button className="mx-3">Scan</Button>
+            <ClickHandlers
+              text="Scan"
+              message="✨ Scan added to queue! Please check history for scanning status."
+              styles="w-fit p-2 px-4 bg-black text-white hover:bg-gray-800 text-sm duration-800 cursor-pointer rounded-md ml-2"
+            />
           </div>
           <div className="w-full">
             <div className="py-2 mt-2 text-sm mr-4">Scan Type:</div>
@@ -32,11 +38,9 @@ function page() {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Select one type...</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
-                  <SelectItem value="banana">Banana</SelectItem>
-                  <SelectItem value="blueberry">Blueberry</SelectItem>
-                  <SelectItem value="grapes">Grapes</SelectItem>
-                  <SelectItem value="pineapple">Pineapple</SelectItem>
+                  <SelectItem value="apple">Quick Scan</SelectItem>
+                  <SelectItem value="orange">Full Scan</SelectItem>
+                  <SelectItem value="banana">Advanced Scan</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -45,18 +49,22 @@ function page() {
             <div className="py-2 mt-2 text-sm mr-4">Schedule Scan:</div>
             <Select>
               <SelectTrigger>
-                <SelectValue placeholder="Select one type!" />
+                <SelectValue placeholder="Select schedule time!" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>
-                    Only avaliable for Reconswift pro users
+                  <SelectLabel className="pl-1">
+                    Only avaliable for Reconswift pro users!
                   </SelectLabel>
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
         </div>
+      </div>
+      <div className="mt-10 mx-auto">
+        <SectionHead title="Pending Scans" />
+        <Grid />
       </div>
     </div>
   );
