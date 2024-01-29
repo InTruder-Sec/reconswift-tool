@@ -1,6 +1,14 @@
 "use client";
 import { UserButton } from "@clerk/nextjs";
-import { Component, History, ScanLine, Settings } from "lucide-react";
+import {
+  Component,
+  History,
+  MessageSquare,
+  MessageSquareDiff,
+  MessageSquareOffIcon,
+  ScanLine,
+  Settings,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -19,8 +27,8 @@ function SideBar() {
     margin = "mt-[83px]";
   } else if (pathname === "history") {
     margin = "mt-[154px]";
-  } else if (pathname === "settings") {
-    margin = "mt-[229px]";
+  } else if (pathname === "feedback") {
+    margin = "mt-[224px]";
   } else if (pathname === "pro") {
     margin = "mt-[298px]";
   } else {
@@ -96,15 +104,15 @@ function SideBar() {
               </TooltipProvider>
             </div>
           </Link>
-          <Link href="/dashboard/settings">
+          <Link href="/dashboard/feedback">
             <div>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <Settings size={32} />
+                    <MessageSquare size={32} />
                   </TooltipTrigger>
                   <TooltipContent>
-                    <div>Settings</div>
+                    <div>Feedback</div>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>

@@ -96,7 +96,7 @@ function Home() {
         </div>
         <ClickHandlers
           text="Get Pro Now ✨"
-          message="✨ Pro version is current;y free!"
+          message="✨ Pro version is currentlly unavailable!"
           styles="my-16 float-right duration-200 font-semibold text-base p-3 px-5 text-white cursor-pointer bg-blue-700 hover:bg-sky-600 hover:text-white rounded-lg "
         />
       </div>
