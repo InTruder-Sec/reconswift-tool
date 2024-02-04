@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Head from "next/head";
 import { Toaster } from "sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 

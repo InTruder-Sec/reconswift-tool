@@ -34,8 +34,7 @@ var schema = buildSchema(`
     }
 
     type Query {
-        getUser(token: String!): ReturnData
-        getScan(id: String!):  ReturnScan
+ 
     }
 `);
 
