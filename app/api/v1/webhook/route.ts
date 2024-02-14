@@ -1,8 +1,85 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { Webhook } from "svix";
+import { headers } from "next/headers";
+import { WebhookEvent } from "@clerk/nextjs/server";
+import UserSchema from "@/model/UserSchema";
+import mongoose from "mongoose";
 
-export const dynamic = "force-dynamic"; // defaults to auto
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req);
+export async function POST(req: Request) {
+  // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
+  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
-  return new Response("Reconswift API");
+  if (!WEBHOOK_SECRET) {
+    throw new Error(
+      "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
+    );
+  }
+
+  // Get the headers
+  const headerPayload = headers();
+  const svix_id = headerPayload.get("svix-id");
+  const svix_timestamp = headerPayload.get("svix-timestamp");
+  const svix_signature = headerPayload.get("svix-signature");
+
+  // If there are no headers, error out
+  if (!svix_id || !svix_timestamp || !svix_signature) {
+    return new Response("Error occured -- no svix headers", {
+      status: 400,
+    });
+  }
+
+  // Get the body
+  const payload = await req.json();
+  const body = JSON.stringify(payload);
+
+  // Create a new Svix instance with your secret.
+  const wh = new Webhook(WEBHOOK_SECRET);
+
+  let evt: WebhookEvent;
+
+  // Verify the payload with the headers
+  try {
+    evt = wh.verify(body, {
+      "svix-id": svix_id,
+      "svix-timestamp": svix_timestamp,
+      "svix-signature": svix_signature,
+    }) as WebhookEvent;
+  } catch (err) {
+    console.error("Error verifying webhook:", err);
+    return new Response("Error occured", {
+      status: 400,
+    });
+  }
+
+  // Get the ID and type
+  const { id } = evt.data;
+  const eventType = evt.type;
+
+  if (eventType === "user.created") {
+    const parsedBody = JSON.parse(body);
+    // Connect to the database and create a new user
+
+    if (!process.env.MONGODB_URI) {
+      throw new Error(
+        "MONGODB_URI is not defined in the environment variables."
+      );
+    }
+
+    try {
+      await mongoose.connect(process.env.MONGODB_URI);
+      UserSchema.create({
+        email: parsedBody?.data?.email_addresses[0].email_address,
+        first_name: parsedBody?.data?.first_name,
+        last_name: parsedBody?.data?.last_name,
+        profile_picture: parsedBody?.data?.image_url,
+        scanHistory: [],
+      });
+    } catch (err) {
+      console.error("Error creating user:", err);
+      return new Response("Error occured", {
+        status: 400,
+      });
+    }
+  }
+
+  return new Response("", { status: 200 });
 }

@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Table } from "@/components/ui/table";
+import { Button } from "./../../../../../components/ui/button";
+import { Separator } from "./../../../../../components/ui/separator";
+import { Table } from "./../../../../../components/ui/table";
 import Image from "next/image";
 import React from "react";
 

@@ -1,14 +1,22 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   email: {
     require: true,
-    type: String,
+    type: String || undefined,
     unique: true,
   },
-  password: {
-    require: true,
+  first_name: {
     type: String,
+    require: true,
+  },
+  last_name: {
+    type: String,
+    require: true,
+  },
+  profile_picture: {
+    type: String || null || undefined,
+    require: true,
   },
   scanHistory: {
     type: [String],
@@ -16,4 +24,4 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model("User", UserSchema);
