@@ -7,16 +7,14 @@ import getuser from "@/lib/auth/getuser";
 
 const resolvers = {
   Query: {
-    Users: async (token: string) => {
-      // const mail = await getuser(token);
-      // await connectToDatabase();
-      // const data = await User.find({});
-      // console.log(data);
-      // await disconnectFromDatabase();
-      // return data;
-      return {
-        id: 23,
-      };
+    Users: async () => {
+      const mail = await getuser();
+      console.log(mail);
+      await connectToDatabase();
+      const data = await User.find({});
+      console.log(data);
+      await disconnectFromDatabase();
+      return data;
     },
   },
   Mutation: {

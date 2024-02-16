@@ -1,4 +1,3 @@
-"use client";
 import { currentUser } from "@clerk/nextjs";
 
 const getuser = async () => {
