@@ -9,7 +9,7 @@ import {
   ShieldBan,
   Sparkles,
 } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "../../../../../components/ui/skeleton";
 
 import React, { ReactElement } from "react";
 
