@@ -1,10 +1,9 @@
-// import Footer from "@/components/Footer";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
-import { Button } from "../../components/ui/button";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { Button } from "@/components/ui/button";
 import { Globe2, Search, ShieldCheck, User } from "lucide-react";
 import React from "react";
-import ClickHandlers from "../../components/ClickHandlers";
+import ClickHandlers from "@/components/ClickHandlers";
 import Link from "next/link";
 
 function Home() {

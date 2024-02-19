@@ -17,7 +17,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./../../../components/ui/tooltip";
+} from "@/components/ui/tooltip";
 
 function SideBar() {
   let pathname = usePathname().split("/")[2];

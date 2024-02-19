@@ -1,5 +1,6 @@
 import React from "react";
 import PricingCard from "./_components/PricingCard";
+import Image from "next/image";
 import SectionHead from "../_components/SectionHead";
 
 function page() {

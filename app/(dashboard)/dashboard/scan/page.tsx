@@ -1,7 +1,7 @@
 import React from "react";
 import SectionHead from "../_components/SectionHead";
-import { Input } from "../../../../components/ui/input";
-import { Button } from "../../../../components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -10,9 +10,9 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../../../../components/ui/select";
+} from "@/components/ui/select";
 import Grid from "../_components/Grid";
-import ClickHandlers from "../../../../components/ClickHandlers";
+import ClickHandlers from "@/components/ClickHandlers";
 
 function page() {
   return (

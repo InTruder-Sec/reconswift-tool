@@ -30,7 +30,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./../../../../components/ui/table";
+} from "@/components/ui/table";
 import { ChevronDownIcon } from "lucide-react";
 import data, { Payment } from "./data";
 
@@ -50,7 +50,7 @@ const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
-        onCheckedChange={(value: any) => row.toggleSelected(!!value)}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
       />
     ),

@@ -1,6 +1,6 @@
 import React from "react";
 import SectionHead from "../_components/SectionHead";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "@/components/ui/button";
 import FeedbackUI from "./_components/FeedbackUI";
 
 function page() {
