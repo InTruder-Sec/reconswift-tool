@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import ClickHandlers from "./ClickHandlers";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 function Navbar() {
   return (
