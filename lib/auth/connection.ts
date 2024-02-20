@@ -1,17 +1,24 @@
 import mongoose from "mongoose";
 
-const connectToDatabase = () => {
+const connectToDatabase = async () => {
+  let isConnected = false;
   const mongodbUri = process.env.MONGODB_URI || "";
-  mongoose
-    .connect(mongodbUri)
-    .then(() => {
-      console.log("Connected to database");
-      return true;
-    })
-    .catch((err) => {
-      console.log("Error connecting to database", err);
-      return false;
-    });
+
+  if (isConnected) {
+    console.log("Using existing database connection");
+    return;
+  }
+
+  if (!mongodbUri) {
+    throw new Error("MONGODB_URI is not defined in the environment variables.");
+  }
+
+  try {
+    await mongoose.connect(mongodbUri);
+    isConnected = true;
+  } catch (error) {
+    console.log("Error connecting to database: ", error);
+  }
 };
 
 const disconnectFromDatabase = async () => {

@@ -1,8 +1,9 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
-import UserSchema from "@/model/UserSchema";
+import User from "@/model/UserSchema";
 import mongoose from "mongoose";
+import { connectToDatabase } from "@/lib/auth/connection";
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
@@ -55,7 +56,6 @@ export async function POST(req: Request) {
 
   if (eventType === "user.created") {
     const parsedBody = JSON.parse(body);
-    // Connect to the database and create a new user
 
     if (!process.env.MONGODB_URI) {
       throw new Error(
@@ -64,8 +64,8 @@ export async function POST(req: Request) {
     }
 
     try {
-      await mongoose.connect(process.env.MONGODB_URI);
-      UserSchema.create({
+      await connectToDatabase();
+      await User.create({
         email: parsedBody?.data?.email_addresses[0].email_address,
         first_name: parsedBody?.data?.first_name,
         last_name: parsedBody?.data?.last_name,

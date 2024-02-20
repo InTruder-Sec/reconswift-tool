@@ -8,7 +8,6 @@ const getuser = async () => {
   connectToDatabase();
   try {
     const userDetails = await User.findOne({ email: mail });
-    disconnectFromDatabase();
     return userDetails;
   } catch (error) {
     console.error("Error:", error);

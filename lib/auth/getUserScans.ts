@@ -7,7 +7,6 @@ const getuser = async () => {
   const mail = user?.emailAddresses[0].emailAddress;
   await connectToDatabase();
   const userDetails = await User.findOne({ mail }).populate("scanHistory");
-  await disconnectFromDatabase();
   return userDetails?.scanHistory;
 };
 

@@ -6,7 +6,6 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import {
@@ -14,8 +13,6 @@ import {
   History,
   Menu,
   MessageSquare,
-  MessageSquareOff,
-  Scan,
   ScanLine,
   Settings,
 } from "lucide-react";
