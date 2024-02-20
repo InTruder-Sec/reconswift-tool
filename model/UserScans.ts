@@ -15,4 +15,5 @@ const scanSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Scan", scanSchema);
+const scan = mongoose.model("Scan", scanSchema);
+export default scan;

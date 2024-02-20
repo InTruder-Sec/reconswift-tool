@@ -5,14 +5,10 @@ import { connectToDatabase, disconnectFromDatabase } from "./connection";
 const getuser = async () => {
   const user = await currentUser();
   const mail = user?.emailAddresses[0].emailAddress;
-  connectToDatabase();
-  try {
-    const userDetails = await User.findOne({ email: mail });
-    disconnectFromDatabase();
-    return userDetails;
-  } catch (error) {
-    console.error("Error:", error);
-  }
+  await connectToDatabase();
+  const userDetails = await User.findOne({ mail }).populate("scanHistory");
+  await disconnectFromDatabase();
+  return userDetails?.scanHistory;
 };
 
 export default getuser;

@@ -1,8 +1,9 @@
 "use client";
+import getuser from "@/lib/auth/getuser";
 import { auth, currentUser } from "@clerk/nextjs";
 import React, { SetStateAction } from "react";
 
-function UserButtons() {
+async function UserButtons() {
   const [user, setUser] = React.useState<SetStateAction<any>>(null);
 
   const fetchUser = async () => {
