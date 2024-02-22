@@ -4,7 +4,7 @@ import Welcome from "./_components/Welcome";
 import { User } from "@clerk/nextjs/server";
 import AnalyticsCardMap from "./_components/AnalyticsCard";
 import Grid from "../_components/Grid";
-import Image from "next/image";
+import RecentScans from "./_components/RecentScans";
 
 export default async function Page() {
   const user: User | null = await currentUser();
@@ -33,7 +33,8 @@ export default async function Page() {
       </div>
       <div className="mt-8">
         <SectionHead title="Recent Scans" />
-        <Grid />
+        {/* <Grid /> */}
+        <RecentScans />
       </div>
     </section>
   );

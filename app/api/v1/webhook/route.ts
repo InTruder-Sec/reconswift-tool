@@ -66,6 +66,7 @@ export async function POST(req: Request) {
     try {
       await connectToDatabase();
       await User.create({
+        _id: parsedBody?.data?.id,
         email: parsedBody?.data?.email_addresses[0].email_address,
         first_name: parsedBody?.data?.first_name,
         last_name: parsedBody?.data?.last_name,

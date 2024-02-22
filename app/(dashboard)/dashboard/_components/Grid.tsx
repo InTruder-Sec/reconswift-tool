@@ -1,5 +1,6 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useUser } from "@clerk/nextjs";
 import React from "react";
 
 const dummyData = [
