@@ -15,7 +15,6 @@ export async function POST(request: Request, response: Response) {
   }
 
   const body = await request.json();
-
   try {
     const user = await UserData.findOne({
       clerkId: id,
@@ -27,9 +26,10 @@ export async function POST(request: Request, response: Response) {
       })
       .sort({ scanDate: body.sort })
       .limit(body.limit);
+    console.log(user);
     if (!user) {
-      return new Response("User not found", {
-        status: 400,
+      return new Response(JSON.stringify([]), {
+        status: 200,
       });
     }
 

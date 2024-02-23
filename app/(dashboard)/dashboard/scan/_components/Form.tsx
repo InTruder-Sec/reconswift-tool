@@ -41,15 +41,30 @@ export function ProfileForm(props: any) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     toast.loading("Adding scan to queue...");
-    const data = await fetch("/api/v1/newscan", {
+    let res = await fetch("/api/v1/newscan", {
       method: "POST",
       body: JSON.stringify(values),
     });
-    if (data.status === 200) toast.success(data.statusText);
-    else toast.error(data.statusText);
+    const body = JSON.parse(res.statusText);
+    if (res.status === 200) {
+      console.log(body.data);
+      console.log("http://localhost:5000/api/v1/scanqueue");
+      const addtoqueue = await fetch(
+        `http://localhost:5000/api/v1/scanqueue?id=${body.data._id}`,
+        {
+          method: "GET",
+        }
+      );
+      if (addtoqueue.status === 200) {
+        toast.success("Scan added to queue");
+      } else {
+        toast.error("Something went wrong! Please try again.");
+      }
+    } else {
+      toast.error(body.message);
+    }
 
     form.reset();
-    action();
   }
 
   return (

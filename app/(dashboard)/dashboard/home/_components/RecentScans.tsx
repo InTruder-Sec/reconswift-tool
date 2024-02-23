@@ -31,7 +31,7 @@ function RecentScans() {
       });
   }, []);
 
-  return <Grid data={data} isloading={isLoading} />;
+  return <Grid data={data} isLoading={isLoading} />;
 }
 
 export default RecentScans;

@@ -1,7 +1,7 @@
 import { connectToDatabase } from "@/lib/auth/connection";
 import Scan from "@/model/UserScans";
 import UserData from "@/model/UserSchema";
-import { auth, useUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 export async function POST(req: Request, response: Response) {
@@ -38,9 +38,12 @@ export async function POST(req: Request, response: Response) {
       { _id: userDetails?._id },
       { $push: { scanHistory: scan._id } }
     );
-
+    const responseText = {
+      message: "Scan added to queue",
+      data: scan,
+    };
     return new Response("", {
-      statusText: "Scan created!",
+      statusText: JSON.stringify(responseText),
       status: 200,
     });
   } catch (error) {
