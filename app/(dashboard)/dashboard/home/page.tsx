@@ -32,8 +32,7 @@ export default async function Page() {
         </div>
       </div>
       <div className="mt-8">
-        <SectionHead title="Recent Scans" />
-        {/* <Grid /> */}
+        <SectionHead title="Top Scans" />
         <RecentScans />
       </div>
     </section>

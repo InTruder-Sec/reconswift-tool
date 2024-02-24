@@ -1,3 +1,4 @@
+"use server";
 import { currentUser } from "@clerk/nextjs";
 import User from "@/model/UserSchema";
 import { connectToDatabase, disconnectFromDatabase } from "./connection";

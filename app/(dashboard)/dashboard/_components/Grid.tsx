@@ -1,86 +1,6 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useUser } from "@clerk/nextjs";
 import React from "react";
-
-const dummyData = [
-  {
-    targetUrl: "https://google.com",
-    scanId: "RSID35194",
-    status: "Completed",
-  },
-  {
-    targetUrl: "https://waveauth.com",
-    scanId: "RSID35192",
-    status: "Completed",
-  },
-  {
-    targetUrl: "https://facebook.com",
-    scanId: "RSID35124",
-    status: "Completed",
-  },
-  {
-    targetUrl: "https://instagram.com",
-    scanId: "RSID35594",
-    status: "In queue",
-  },
-];
-
-function Grid() {
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-  return (
-    <div className="w-11/12 mx-auto mt-8 overflow-scroll sm:overflow-hidden">
-      <table className="table-auto w-full ">
-        <thead>
-          <tr className="text-left ">
-            <th className="px-4 py-2 border-b-2 border-r-2 border-gray-600">
-              Target URL
-            </th>
-            <th className="px-4 py-2 border-b-2 border-r-2 border-gray-600">
-              Scan ID
-            </th>
-            <th className="px-4 py-2 border-b-2 border-gray-600">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isLoading ? (
-            <>
-              {
-                <>
-                  <LoadingSkeleton />
-                  <LoadingSkeleton />
-                  <LoadingSkeleton />
-                </>
-              }
-            </>
-          ) : (
-            <>
-              {dummyData.map((data, index) => (
-                <TR
-                  key={index}
-                  targetUrl={data.targetUrl}
-                  scanId={data.scanId}
-                  status={data.status}
-                />
-              ))}
-            </>
-          )}
-          <tr>
-            <td className="px-4 py-2 border-r-2 border-gray-400"></td>
-            <td className="px-4 py-2 border-r-2 border-gray-400"></td>
-            <td className="px-4 py-2 border-gray-400"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
-}
 
 const LoadingSkeleton = () => {
   return (
@@ -111,5 +31,53 @@ const TR = (props: any) => {
     </tr>
   );
 };
+
+function Grid(props: any) {
+  let dataMap = props.data?.map((d: any, index: any) => (
+    <TR key={index} targetUrl={d.url} scanId={d.scanId} status={d.scanStatus} />
+  ));
+
+  if (props.data.length === 0) {
+    dataMap = <TR targetUrl="No Scans Found" scanId="N/A" status="N/A" />;
+  }
+
+  return (
+    <div className="w-11/12 mx-auto mt-8 overflow-scroll sm:overflow-hidden">
+      <table className="table-auto w-full ">
+        <thead>
+          <tr className="text-left ">
+            <th className="px-4 py-2 border-b-2 border-r-2 border-gray-600">
+              Target URL
+            </th>
+            <th className="px-4 py-2 border-b-2 border-r-2 border-gray-600">
+              Scan ID
+            </th>
+            <th className="px-4 py-2 border-b-2 border-gray-600">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.isLoading ? (
+            <>
+              {
+                <>
+                  <LoadingSkeleton />
+                  <LoadingSkeleton />
+                  <LoadingSkeleton />
+                </>
+              }
+            </>
+          ) : (
+            <>{dataMap}</>
+          )}
+          <tr>
+            <td className="px-4 py-2 border-r-2 border-gray-400"></td>
+            <td className="px-4 py-2 border-r-2 border-gray-400"></td>
+            <td className="px-4 py-2 border-gray-400"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export default Grid;

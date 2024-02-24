@@ -1,17 +1,16 @@
 "use client";
-import Grid from "../../_components/Grid";
-import React, { useEffect } from "react";
-import { useState } from "react";
 
-function RecentScans() {
+import React, { useEffect, useState } from "react";
+import Grid from "../../_components/Grid";
+
+function PendingScans() {
   const [isLoading, setisLoading] = useState(true);
   const [data, setdata] = useState([]);
-
   useEffect(() => {
     fetch("/api/v1/scans", {
       method: "POST",
       body: JSON.stringify({
-        limit: 5,
+        limit: 0,
         request: "scanId scanStatus scanType url",
         sort: 1,
       }),
@@ -31,7 +30,7 @@ function RecentScans() {
       });
   }, []);
 
-  return <Grid data={data} isloading={isLoading} />;
+  return <Grid data={data} isLoading={isLoading} />;
 }
 
-export default RecentScans;
+export default PendingScans;
