@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
+  clerkId: {
+    require: true,
+    type: String,
+    unique: true,
+  },
   email: {
     require: true,
     type: String,
@@ -24,6 +29,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const UserData = mongoose.models?.User || mongoose.model("User", userSchema);
 
-export default User;
+export default UserData;

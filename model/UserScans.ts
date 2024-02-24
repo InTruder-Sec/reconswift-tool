@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const scanSchema = new mongoose.Schema({
+  scanId: {
+    require: true,
+    type: String,
+  },
   url: {
     require: true,
     type: String,

@@ -14,7 +14,9 @@ const createScan = async (targetUri: string, type: string) => {
   console.log(type);
 
   try {
+    const newId = "RSID" + Math.random().toString(36).substring(7);
     const scan = await Scan.create({
+      scanId: newId,
       url: targetUri,
       scanStatus: "Pending",
       scanType: type,
