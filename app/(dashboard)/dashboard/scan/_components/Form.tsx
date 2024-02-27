@@ -55,10 +55,13 @@ export function ProfileForm(props: any) {
           method: "GET",
         }
       );
+      console.log(addtoqueue);
       if (addtoqueue.status === 200) {
         toast.success("Scan added to queue");
       } else {
-        toast.error("Something went wrong! Please try again.");
+        toast.error(
+          "Something went wrong! Please                                                                                                                                                                                                                                                                                                                 try again."
+        );
       }
     } else {
       toast.error(body.message);
@@ -111,9 +114,9 @@ export function ProfileForm(props: any) {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Select one type...</SelectLabel>
-                      <SelectItem value="Quick Scan">Quick Scan</SelectItem>
-                      <SelectItem value="Full Scan">Full Scan</SelectItem>
-                      <SelectItem value="Advanced Scan">
+                      <SelectItem value="Quick_Scan">Quick Scan</SelectItem>
+                      <SelectItem value="Full_Scan">Full Scan</SelectItem>
+                      <SelectItem value="Advanced_Scan">
                         Advanced Scan
                       </SelectItem>
                     </SelectGroup>

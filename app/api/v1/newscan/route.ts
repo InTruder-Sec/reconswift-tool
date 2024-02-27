@@ -22,7 +22,7 @@ export async function POST(req: Request, response: Response) {
       scanId: newId,
       url: body.url,
       scanStatus: "Pending",
-      scanType: body.scantype,
+      scanType: body.scanType,
       scanDate: new Date(),
       userId: userDetails?._id,
     }).catch((error) => {
