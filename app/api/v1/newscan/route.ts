@@ -15,6 +15,11 @@ export async function POST(req: Request, response: Response) {
   }
   const userDetails = await UserData.findOne({ clerkId: id });
   const body = await req.json();
+  if (body.url === "" || body.scanType === "") {
+    return new Response("Please fill all the fields", {
+      status: 400,
+    });
+  }
 
   try {
     const newId = "RSID-" + Math.random().toString(36).substring(7);

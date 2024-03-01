@@ -26,7 +26,7 @@ export async function POST(request: Request, response: Response) {
       })
       .sort({ scanDate: body.sort })
       .limit(body.limit);
-    console.log(user);
+
     if (!user) {
       return new Response(JSON.stringify([]), {
         status: 200,

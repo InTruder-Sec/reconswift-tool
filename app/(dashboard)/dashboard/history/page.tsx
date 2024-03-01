@@ -15,7 +15,6 @@ import {
 } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -32,58 +31,81 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDownIcon } from "lucide-react";
-import data, { Payment } from "./data";
 
-const columns: ColumnDef<Payment>[] = [
+type Scans = {
+  scanId: string;
+  scanStatus: "In Queue" | "Completed" | "In Progress";
+  url: string;
+  reportUrl: string;
+  date: string;
+};
+
+const columns: ColumnDef<Scans>[] = [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "scanid",
+    accessorKey: "scanId",
     header: () => <div>Scan ID</div>,
     cell: ({ row }) => {
-      return <div className="font-medium">{row.getValue("scanid")}</div>;
+      return <div className="font-medium">{row.getValue("scanId")}</div>;
     },
   },
 
   {
-    accessorKey: "target",
+    accessorKey: "url",
     header: ({ column }) => {
       return <div className="capitalize">Target</div>;
     },
+    cell: ({ row }) => <div className="lowercase">{row.getValue("url")}</div>,
+  },
+  {
+    accessorKey: "scanStatus",
+    header: "Status",
     cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("target")}</div>
+      <div className="capitalize">{row.getValue("scanStatus")}</div>
     ),
   },
   {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
-    ),
+    accessorKey: "reportUrl",
+    header: "Report",
+    cell: ({ row }) => {
+      if (row.getValue("reportUrl")) {
+        return (
+          <a
+            href={row.getValue("reportUrl")}
+            target="_blank"
+            download={true}
+            className="text-blue-600"
+          >
+            <Button variant="outline">Download</Button>
+          </a>
+        );
+      } else {
+        return (
+          <div className="text-muted-foreground">
+            <Button variant="link" disabled>
+              Download
+            </Button>
+          </div>
+        );
+      }
+    },
   },
 ];
 
 function DataTableDemo() {
+  const [data, setdata] = React.useState<[Scans] | []>([]);
+
+  React.useEffect(() => {
+    fetch("http://localhost:3000/api/v1/scans", {
+      method: "POST",
+      body: JSON.stringify({
+        request: "scanId scanStatus scanType url reportUrl",
+        sort: 1,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => setdata(data));
+  }, []);
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -114,14 +136,6 @@ function DataTableDemo() {
   return (
     <div className="w-full">
       <div className="flex items-center flex-wrap sm:flex-nowrap py-4">
-        <Input
-          placeholder="Filter Target..."
-          value={(table.getColumn("target")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("target")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm w-full"
-        />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="w-full sm:w-auto sm:my-2">
@@ -201,21 +215,7 @@ function DataTableDemo() {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
         <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              alert("Feature not implemented yet.");
-            }}
-            disabled={true}
-          >
-            Download
-          </Button>
           <Button
             variant="outline"
             size="sm"

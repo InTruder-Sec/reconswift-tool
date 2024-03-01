@@ -22,10 +22,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import action from "@/app/actions";
 
 const formSchema = z.object({
   url: z.string().url(),
+  // scan type can be Quick_Scan, Full_Scan, Advanced_Scan
   scanType: z.string(),
 });
 
@@ -40,34 +40,61 @@ export function ProfileForm(props: any) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    // validiate if the form is valid
+    if (values.scanType === "") {
+      return toast.error("Please fill all the fields");
+    }
+    if (values.scanType !== "Quick_Scan") {
+      return toast.error("Only Quick Scan is available for now!");
+    }
     toast.loading("Adding scan to queue...");
     let res = await fetch("/api/v1/newscan", {
       method: "POST",
       body: JSON.stringify(values),
     });
     const body = JSON.parse(res.statusText);
-    if (res.status === 200) {
-      console.log(body.data);
-      console.log("http://localhost:5000/api/v1/scanqueue");
-      const addtoqueue = await fetch(
-        `http://localhost:5000/api/v1/scanqueue?id=${body.data._id}`,
+    try {
+      if (res.status === 200) {
+        console.log(body.data);
+        const addtoqueue = await fetch(
+          `http://localhost:5000/api/v1/scanqueue?id=${body.data._id}`,
+          {
+            method: "GET",
+          }
+        );
+        if (addtoqueue.status === 200) {
+          toast.success("Scan added to queue");
+        } else {
+          // Update scan status to failed
+          await fetch(
+            `http://localhost:5000/api/v1/scanstatus?id=${body.data._id}`,
+            {
+              method: "PUT",
+              body: JSON.stringify({
+                status: "Failed",
+              }),
+            }
+          );
+
+          toast.error("Failed to add scan to queue!");
+        }
+      } else {
+        toast.error(body.message);
+      }
+
+      form.reset();
+    } catch (error) {
+      await fetch(
+        `http://localhost:5000/api/v1/scanstatus?id=${body.data._id}`,
         {
-          method: "GET",
+          method: "PUT",
+          body: JSON.stringify({
+            status: "Failed",
+          }),
         }
       );
-      console.log(addtoqueue);
-      if (addtoqueue.status === 200) {
-        toast.success("Scan added to queue");
-      } else {
-        toast.error(
-          "Something went wrong! Please                                                                                                                                                                                                                                                                                                                 try again."
-        );
-      }
-    } else {
-      toast.error(body.message);
+      toast.error("Failed to add scan to queue!");
     }
-
-    form.reset();
   }
 
   return (
