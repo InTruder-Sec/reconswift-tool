@@ -1,10 +1,10 @@
 # reconswift-tool
 
-DiscoverAssessandSecureTest the Web Safely with ReconSwift. ReconSwift the automated reconnaissance platform serves as an indispensable tool for bug bounty hunters by streamlining and expediting the initial phase of their security assessments.
+Discover Assess and Secure Test the Web Safely with ReconSwift. ReconSwift the automated reconnaissance platform serves as an indispensable tool for bug bounty hunters by streamlining and expediting the initial phase of their security assessments.
 
 ### 🔗 Link
 
-[Deploy Link](https://scribblechat.netlify.app)
+[Deploy Link](https://reconswift.vercel.app/)
 
 ### 💻 Local Environment
 
@@ -20,12 +20,14 @@ npm start
 
 _⚠️Note: You will require a `.env.local` file with the following values_
 
-    Also change the Project ID
-
 ```
-cd backend
-npm i
-npm start
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=REDACTED
+CLERK_SECRET_KEY=REDACTED
+WEBHOOK_SECRET=REDACTED
+MONGODB_URI=mongodb+srv:/REDACTED.mongodb.net/?retryWrites=true&w=majority
+SERVER_URL=http://localhost:5000
+
 ```
 
 ### 🛠️ Tech-Stack
