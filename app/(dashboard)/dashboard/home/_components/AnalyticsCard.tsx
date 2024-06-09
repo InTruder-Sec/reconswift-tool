@@ -11,7 +11,8 @@ import {
 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
+import { toast } from "sonner";
 
 type Props = {
   title: string;
@@ -60,6 +61,12 @@ function AnalyticsCardMap() {
       setIsLoading(false);
     }, 2000);
   }, []);
+
+  React.useEffect(() => {
+      toast.info("ReconSwift is currently under development phase. Feel free to explore the features and report any bugs or issues. Thank you for your patience during");
+
+  })
+
 
   return (
     <>

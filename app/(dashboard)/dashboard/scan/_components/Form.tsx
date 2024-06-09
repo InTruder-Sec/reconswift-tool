@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import action from "@/app/actions";
+import { fetchScans } from "./PendingScans";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   url: z.string().url(),
@@ -57,6 +59,9 @@ export function ProfileForm(props: any) {
       );
       if (addtoqueue.status === 200) {
         toast.success("Scan added to queue");
+        // useEffect(() => {
+          fetchScans(props.setdata, props.setisLoading);
+        // })
       } else {
         toast.error("Something went wrong! Please try again.");
       }
