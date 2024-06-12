@@ -46,7 +46,8 @@ export function ProfileForm(props: any) {
       method: "POST",
       body: JSON.stringify(values),
     });
-    const body = JSON.parse(res.statusText);
+    console.log(res)
+    const body = await res.json();
     if (res.status === 200) {
       console.log(body.data);
       try {

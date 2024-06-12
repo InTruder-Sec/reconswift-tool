@@ -43,8 +43,11 @@ export async function POST(req: Request, response: Response) {
       message: "Scan added to queue",
       data: scan,
     };
-    return new Response("", {
-      statusText: JSON.stringify(responseText),
+    // return new Response("", {
+    //   statusText: JSON.stringify(responseText),
+    //   status: 200,
+    // });
+    return new Response(JSON.stringify(responseText), {
       status: 200,
     });
   } catch (error) {
