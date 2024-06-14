@@ -49,8 +49,9 @@ export function ProfileForm(props: any) {
     const body = JSON.parse(res.statusText);
     if (res.status === 200) {
       console.log(body.data);
+      try {
       const addtoqueue = await fetch(
-        `http://65.0.31.210:80/api/v1/scanqueue?id=${body.data._id}`,
+        `http://13.233.45.193:80/api/v1/scanqueue?id=${body.data._id}`,
         {
           method: "GET",
         }
@@ -60,9 +61,12 @@ export function ProfileForm(props: any) {
         // useEffect(() => {
           fetchScans(props.setdata, props.setisLoading);
         // })
-      } else {
-        toast.error("Something went wrong! Please try again.");
-      }
+      } 
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong! Please try again.");
+    }
+      
     } else {
       toast.error(body.message);
     }
