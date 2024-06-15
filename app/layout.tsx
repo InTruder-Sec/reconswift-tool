@@ -10,7 +10,6 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-export const ServerUrl = "http://65.0.31.210:80/"
 
 export const metadata: Metadata = {
   title: "ReconSwift - Automated Reconnaissance Framework",
