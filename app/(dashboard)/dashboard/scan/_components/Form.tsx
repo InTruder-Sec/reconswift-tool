@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { fetchScans } from "./PendingScans";
-import { useEffect } from "react";
 
 const formSchema = z.object({
   url: z.string().url(),
@@ -50,9 +49,8 @@ export function ProfileForm(props: any) {
     const body = JSON.parse(res.statusText);
     if (res.status === 200) {
       console.log(body.data);
-      console.log("http://localhost:5000/api/v1/scanqueue");
       const addtoqueue = await fetch(
-        `http://localhost:5000/api/v1/scanqueue?id=${body.data._id}`,
+        `http://65.0.31.210:80/api/v1/scanqueue?id=${body.data._id}`,
         {
           method: "GET",
         }
