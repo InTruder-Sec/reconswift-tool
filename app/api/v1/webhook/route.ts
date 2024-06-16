@@ -71,6 +71,7 @@ export async function POST(req: Request) {
         last_name: parsedBody?.data?.last_name,
         profile_picture: parsedBody?.data?.image_url,
         scanHistory: [],
+        scanTime: 0,
       });
     } catch (err) {
       console.error("Error creating user:", err);

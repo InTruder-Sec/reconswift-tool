@@ -127,6 +127,7 @@ function DataTableDemo() {
       body: JSON.stringify({
         request: "scanId scanStatus url scanDate reportUrl scanType",
         sort: -1,
+        limit: 0,
       }),
     })
       .then((response) => {

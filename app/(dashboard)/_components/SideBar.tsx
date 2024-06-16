@@ -15,6 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { toast } from "sonner";
 
 function SideBar() {
   let pathname = usePathname().split("/")[2];
@@ -101,8 +102,8 @@ function SideBar() {
               </TooltipProvider>
             </div>
           </Link>
-          <Link href="/dashboard/feedback">
-            <div>
+          {/* <Link href="/dashboard/feedback"> */}
+            <div onClick={() => {toast.info("We value your feedback, but please wait till this feature is activated!")}}>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
@@ -114,9 +115,9 @@ function SideBar() {
                 </Tooltip>
               </TooltipProvider>
             </div>
-          </Link>
-          <Link href="/dashboard/pro">
-            <div>
+          {/* </Link> */}
+          {/* <Link href="/dashboard/pro"> */}
+            <div onClick={() => {toast.info("Reconswift is currently free. Pro version coming soon!")}}>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
@@ -128,7 +129,7 @@ function SideBar() {
                 </Tooltip>
               </TooltipProvider>
             </div>
-          </Link>
+          {/* </Link> */}
         </div>
         <div className="profile scale-125 ml-8 mt-20 ">
           <UserButton afterSignOutUrl="/" />

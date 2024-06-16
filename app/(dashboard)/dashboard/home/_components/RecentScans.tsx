@@ -14,7 +14,7 @@ function RecentScans() {
       body: JSON.stringify({
         limit: 5,
         request: "scanId scanStatus url",
-        sort: 1,
+        sort: -1,
       }),
     })
       .then((response) => {

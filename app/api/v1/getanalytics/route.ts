@@ -1,5 +1,4 @@
 import { connectToDatabase } from "@/lib/auth/connection";
-import Scan from "@/model/UserScans";
 import UserData from "@/model/UserSchema";
 import { auth } from "@clerk/nextjs";
 
@@ -14,24 +13,26 @@ export async function POST(request: Request, response: Response) {
     });
   }
 
-  const body = await request.json();
   try {
     const user = await UserData.findOne({
       clerkId: id,
     })
-      .populate({
-        path: "scanHistory",
-        model: Scan,
-        select: body.request,
-        options: {sort: {scanDate: body.sort}, limit: body.limit}
-      });
-    if (!user) {
-      return new Response(JSON.stringify([]), {
-        status: 200,
-      });
+
+    const details = {
+      totalScans: user.scanHistory.length,
+      scanTime: user.scanTime,
     }
 
-    return new Response(JSON.stringify(user.scanHistory), {
+
+    if(!user) {
+      return new Response("User not found", {
+        status: 404,
+      });
+    }
+     
+
+
+    return new Response(JSON.stringify(details), {
       status: 200,
       headers: {
         "Content-Type": "application/json",

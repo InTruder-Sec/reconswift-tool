@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+  scanTime: {
+    type: Number,
+    default: 0
+  }
 });
 
 const UserData = mongoose.models?.User || mongoose.model("User", userSchema);

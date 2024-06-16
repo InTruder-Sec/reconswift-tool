@@ -10,7 +10,7 @@ function fetchScans(setdata: React.Dispatch<React.SetStateAction<never[]>>, seti
     body: JSON.stringify({
       limit: 0,
       request: "scanId scanStatus scanType url",
-      sort: 1,
+      sort: -1,
     }),
   })
     .then((response) => {
@@ -20,7 +20,8 @@ function fetchScans(setdata: React.Dispatch<React.SetStateAction<never[]>>, seti
       throw response;
     })
     .then((data) => {
-      setdata(data);
+      const pending = data.filter((scan: { scanStatus: string; }) => (scan.scanStatus === "Pending" || scan.scanStatus === "Running"));
+      setdata(pending);
       setisLoading(false);
     })
     .catch((error) => {
