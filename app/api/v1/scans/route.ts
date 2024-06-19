@@ -5,10 +5,10 @@ import { auth } from "@clerk/nextjs";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 export async function POST(request: Request, response: Response) {
-  const user = auth();
-  const id = user.userId;
+  const {userId} : {userId: string | null} = auth();
+  let id : string | null = userId;
   await connectToDatabase();
-  if (!id) {
+  if (id == null) {
     return new Response("User not authorized", {
       status: 400,
     });
@@ -26,7 +26,6 @@ export async function POST(request: Request, response: Response) {
       })
       .sort({ scanDate: body.sort })
       .limit(body.limit);
-    console.log(user);
     if (!user) {
       return new Response(JSON.stringify([]), {
         status: 200,

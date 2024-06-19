@@ -4,10 +4,7 @@ import {
   Component,
   History,
   MessageSquare,
-  MessageSquareDiff,
-  MessageSquareOffIcon,
   ScanLine,
-  Settings,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

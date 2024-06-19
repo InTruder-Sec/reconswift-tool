@@ -4,9 +4,7 @@ import SectionHead from "../_components/SectionHead";
 import Welcome from "./_components/Welcome";
 import { User } from "@clerk/nextjs/server";
 import AnalyticsCardMap from "./_components/AnalyticsCard";
-import Grid from "../_components/Grid";
 import RecentScans from "./_components/RecentScans";
-import { toast } from "sonner";
 
 export default async function Page() {
   const user: User | null = await currentUser();

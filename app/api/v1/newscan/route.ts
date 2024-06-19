@@ -15,6 +15,7 @@ export async function POST(req: Request, response: Response) {
   }
   const userDetails = await UserData.findOne({ clerkId: id });
   const body = await req.json();
+  console.log(body);
 
   try {
     const newId = "RSID-" + Math.random().toString(36).substring(7);
@@ -22,7 +23,7 @@ export async function POST(req: Request, response: Response) {
       scanId: newId,
       url: body.url,
       scanStatus: "Pending",
-      scanType: body.scantype,
+      scanType: body.scanType,
       scanDate: new Date(),
       userId: userDetails?._id,
     }).catch((error) => {
