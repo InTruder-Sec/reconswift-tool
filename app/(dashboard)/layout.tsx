@@ -1,6 +1,4 @@
-import { useRouter } from "next/router";
 import SideBar from "./_components/SideBar";
-import Image from "next/image";
 import {
   Sheet,
   SheetContent,
@@ -14,7 +12,6 @@ import {
   Menu,
   MessageSquare,
   ScanLine,
-  Settings,
 } from "lucide-react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";

@@ -22,7 +22,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import action from "@/app/actions";
 import { fetchScans } from "./PendingScans";
 import { useEffect } from "react";
 
@@ -43,6 +42,7 @@ export function ProfileForm(props: any) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     toast.loading("Adding scan to queue...");
+    console.log(values, "values")
     let res = await fetch("/api/v1/newscan", {
       method: "POST",
       body: JSON.stringify(values),

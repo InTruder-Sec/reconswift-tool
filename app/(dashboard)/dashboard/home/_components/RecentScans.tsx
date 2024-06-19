@@ -2,6 +2,7 @@
 import Grid from "../../_components/Grid";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 function RecentScans() {
   const [isLoading, setisLoading] = useState(true);
@@ -12,7 +13,7 @@ function RecentScans() {
       method: "POST",
       body: JSON.stringify({
         limit: 5,
-        request: "scanId scanStatus scanType url",
+        request: "scanId scanStatus url",
         sort: 1,
       }),
     })
@@ -27,6 +28,7 @@ function RecentScans() {
         setisLoading(false);
       })
       .catch((error) => {
+        toast.info("Error fetching data! Please try again later.");
         console.error("Error fetching data:", error);
       });
   }, []);

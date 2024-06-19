@@ -3,8 +3,13 @@ import { ArrowRight } from "lucide-react";
 import ClickHandlers from "./ClickHandlers";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { auth } from "@clerk/nextjs";
 
 function Navbar() {
+
+  const {userId} : {userId: string | null} = auth();
+
+
   return (
     <div className="w-full h-20 flex bg-background text-foreground px-4 sm:px-20 text-sm py-2">
       <img src="/logo.png" alt="logo" className="w-15 h-15 md:w-20 md:h-20" />
@@ -20,12 +25,15 @@ function Navbar() {
               message="Currently ReconSwift is free!"
               styles="mx-5 cursor-pointer"
             />
+            {/* Display block if userid is null */}
+            <span className={`${userId == null ? "" : "hidden"}`} >
             <Link href="/login" className="mx-5">
               Login
             </Link>
             <Link href="/signup" className="mx-5">
               Signup
             </Link>
+            </span>
             <Link href="/dashboard/home">
               <Button className="mx-5 duration-200 font-semibold text-sm p-6 bg-blue-700 hover:bg-sky-600 hover:text-white">
                 Get Started for Free

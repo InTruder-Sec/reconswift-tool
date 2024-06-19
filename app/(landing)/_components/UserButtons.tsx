@@ -1,6 +1,5 @@
 "use client";
-import getuser from "@/lib/auth/getuser";
-import { auth, currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 import React, { SetStateAction } from "react";
 
 async function UserButtons() {
@@ -11,7 +10,7 @@ async function UserButtons() {
     setUser(userDetails);
   };
 
-  return <div>Hell0o</div>;
+  return <div>Hello</div>;
 }
 
 export default UserButtons;

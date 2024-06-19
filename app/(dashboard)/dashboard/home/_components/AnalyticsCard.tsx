@@ -65,7 +65,7 @@ function AnalyticsCardMap() {
   React.useEffect(() => {
       toast.info("ReconSwift is currently under development phase. Feel free to explore the features and report any bugs or issues. Thank you for your patience during");
 
-  })
+  }, [])
 
 
   return (
