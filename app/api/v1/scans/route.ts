@@ -23,9 +23,8 @@ export async function POST(request: Request, response: Response) {
         path: "scanHistory",
         model: Scan,
         select: body.request,
-      })
-      .sort({ scanDate: body.sort })
-      .limit(body.limit);
+        options: {sort: {scanDate: body.sort}}
+      });
     if (!user) {
       return new Response(JSON.stringify([]), {
         status: 200,

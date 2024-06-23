@@ -13,7 +13,6 @@ Discover Assess and Secure Test the Web Safely with ReconSwift. ReconSwift the a
 ```
 npm i
 npm start
-
 ```
 
 **Back-End**
@@ -21,14 +20,16 @@ npm start
 _⚠️Note: You will require a `.env.local` file with the following values_
 
 ```
-
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=REDACTED
 CLERK_SECRET_KEY=REDACTED
 WEBHOOK_SECRET=REDACTED
 MONGODB_URI=mongodb+srv:/REDACTED.mongodb.net/?retryWrites=true&w=majority
 SERVER_URL=http://localhost:5000
-
 ```
+
+### 🏗️ Project Architecture
+
+<img width="100%" height="100%" src="https://lucid.app/publicSegments/view/ea3333a7-fca1-4b65-a6bc-e6c448db1876/image.png"/>
 
 ### 🛠️ Tech-Stack
 
