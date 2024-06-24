@@ -1,14 +1,13 @@
 "use client";
+import { useUser } from "@clerk/nextjs";
 import React from "react";
 
-type Props = {
-  name: string | null | undefined;
-};
 
-function Welcome(props: Props) {
+function Welcome() {
+  const {user} = useUser();
   return (
     <>
-      <div className="text-lg font-semibold">~(Hello@{props.name})</div>
+      <div className="text-lg font-semibold">~(Hello@{user?.firstName})</div>
     </>
   );
 }

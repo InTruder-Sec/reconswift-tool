@@ -58,7 +58,7 @@ export function ProfileForm(props: any) {
         }
       );
       if (addtoqueue.status === 200) {
-        toast.success("Scan added to queue");
+        toast.success("Scan added to queue! A scan takes 5-10 minutes to complete once started. Sit back and relax!");
         // useEffect(() => {
           fetchScans(props.setdata, props.setisLoading);
         // })

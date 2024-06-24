@@ -11,10 +11,11 @@ import {
 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import React, { ReactElement, useEffect } from "react";
-import { toast } from "sonner";
+import React, { ReactElement, SetStateAction, useEffect } from "react";
+import UserData from "@/model/UserSchema";        
+import { useAuth} from "@clerk/nextjs";
 
-type Props = {
+type analyticsType = {
   title: string;
   subtitle: string;
   icon: ReactElement;
@@ -22,50 +23,54 @@ type Props = {
   value: number | string;
 };
 
-const cardData = [
-  {
-    title: "Total Scans",
-    value: 0o6,
-    subtitle: "12 Scans in queue",
-    icon: <FileSearch size={24} />,
-    subIcon: <GitPullRequestArrow size={18} className="mx-2" />,
-  },
-  {
-    title: "Scanning time",
-    value: "84.69M",
-    subtitle: "No scan in progress",
-    icon: <Hourglass size={24} />,
-    subIcon: <HardDriveDownload size={18} className="mx-2" />,
-  },
-  {
-    title: "Vulnerabilities",
-    value: 12,
-    subtitle: "Horses working hard!",
-    icon: <ShieldBan size={24} />,
-    subIcon: <AlignHorizontalJustifyStart size={18} className="mx-2" />,
-  },
-  {
-    title: "Upgrade for more",
-    value: "✨",
-    subtitle: "Get detailed analytics!",
-    icon: <Sparkles size={24} />,
-    subIcon: <BadgeCheck size={18} className="mx-2" />,
-  },
-];
 
-function AnalyticsCardMap() {
-  const [isLoading, setIsLoading] = React.useState(true);
+function AnalyticsCardMap() {   
+  const [AnalyticsData, setAnalyticsData] = React.useState<analyticsType[]>([]);
+  const [isLoading, setisLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+  useEffect(() => {
 
-  React.useEffect(() => {
-      toast.info("ReconSwift is currently under development phase. Feel free to explore the features and report any bugs or issues. Thank you for your patience during");
+    fetch("/api/v1/getanalytics", {
+      method: "POST",
+      
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        setAnalyticsData([
+          {
+            title: "Total Scans",
+            value: data.totalScans,
+            subtitle: `Go ahead add new scans!`,
+            icon: <FileSearch size={24} />,
+            subIcon: <GitPullRequestArrow size={18} className="mx-2" />,
+          },
+          {
+            title: "Scanning time",
+            value: `${data.scanTime} Min`,
+            subtitle: "Experience the speed!",
+            icon: <Hourglass size={24} />,
+            subIcon: <HardDriveDownload size={18} className="mx-2" />,
+          },
+          {
+            title: "Vulnerabilities",
+            value: 0,
+            subtitle: "Feature coming soon!",
+            icon: <ShieldBan size={24} />,
+            subIcon: <AlignHorizontalJustifyStart size={18} className="mx-2" />,
+          },
+          {
+            title: "Upgrade for more",
+            value: "✨",
+            subtitle: "Get detailed analytics!",
+            icon: <Sparkles size={24} />,
+            subIcon: <BadgeCheck size={18} className="mx-2" />,
+          },
+        ]);
+        setisLoading(false);
+      });
+     }
+  ,[])
 
-  }, [])
 
 
   return (
@@ -79,7 +84,7 @@ function AnalyticsCardMap() {
         </>
       ) : (
         <>
-          {cardData.map((card, index) => (
+          {AnalyticsData.map((card, index) => (
             <AnalyticsCard
               key={index}
               title={card.title}
@@ -103,7 +108,7 @@ function SkeletonCard() {
   );
 }
 
-function AnalyticsCard(props: Props) {
+function AnalyticsCard(props: analyticsType) {
   return (
     <section className="mx-auto">
       <div className="hover:scale-105 duration-200  col-span-full w-72 xl:col-span-8 bg-white shadow-2xl  mt-6 sm:m-5 rounded-md border border-gray-200">
@@ -113,7 +118,7 @@ function AnalyticsCard(props: Props) {
               {props.icon}
             </div>
             <div className="ml-5">
-              <h4 className="text-2xl font-semibold text-gray-700">
+              <h4 className="text-2xl font-semibold text-gray-700  overflow-scroll w-10/12 no-scrollbar"  >
                 {props.value}
               </h4>
               <div className="text-gray-500">{props.title}</div>
