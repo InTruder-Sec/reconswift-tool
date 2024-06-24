@@ -33,7 +33,7 @@ SERVER_URL=http://localhost:5000
 
 ### 🛠️ Tech-Stack
 
-> HTML, CSS, JS, REACT, SOCKET.io AZURE CLOUD, NODE, EXPRESS, MONGODB,
+> HTML, CSS, JS, REACT, ShadCN, TAILWIND, AWS, NEXT.JS, REST API, MONGODB, CLERK
 
 ### 🚀 Contribution Guidelines
 
