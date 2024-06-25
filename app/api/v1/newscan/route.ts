@@ -15,7 +15,7 @@ export async function POST(req: Request, response: Response) {
   }
   const userDetails = await UserData.findOne({ clerkId: id });
   const body = await req.json();
-  console.log(body);
+  console.log(body, "Request Body");
 
   try {
     const newId = "RSID-" + Math.random().toString(36).substring(7);
@@ -43,8 +43,11 @@ export async function POST(req: Request, response: Response) {
       message: "Scan added to queue",
       data: scan,
     };
-    return new Response("", {
-      statusText: JSON.stringify(responseText),
+    // return new Response("", {
+    //   statusText: JSON.stringify(responseText),
+    //   status: 200,
+    // });
+    return new Response(JSON.stringify(responseText), {
       status: 200,
     });
   } catch (error) {
