@@ -40,6 +40,9 @@ export function ProfileForm(props: any) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if(values.scanType == "") {
+      toast.error("Please select a scan type.");
+    }
     if(values.scanType === "Full Scan" || values.scanType === "Advanced Scan") {
       toast.info("Full Scan and Advanced Scan is currently disabled. Please select Quick Scan for now.");
       return;
