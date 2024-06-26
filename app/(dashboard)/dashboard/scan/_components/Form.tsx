@@ -40,6 +40,17 @@ export function ProfileForm(props: any) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if(values.scanType === "Full Scan" || values.scanType === "Advanced Scan") {
+      toast.info("Full Scan and Advanced Scan is currently disabled. Please select Quick Scan for now.");
+      return;
+    }
+    const urlRegex = new RegExp(
+      "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w\\.-]*)*\\/?$"
+    );
+    if (!urlRegex.test(values.url)) {
+      toast.error("Please enter a valid URL.");
+      return;
+    }
     toast.loading("Adding scan to queue...");
     console.log(values, "values")
     let res = await fetch("/api/v1/newscan", {
