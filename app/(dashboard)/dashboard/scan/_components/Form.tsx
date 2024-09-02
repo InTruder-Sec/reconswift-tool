@@ -81,6 +81,11 @@ export function ProfileForm(props: any) {
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong! Please try again.");
+      // Update scan as failed
+      let res = await fetch("/api/v1/failedscan", {
+        method: "POST",
+        body: JSON.stringify({scanId: body.data.scanId})
+      })
     }
       
     } else {
