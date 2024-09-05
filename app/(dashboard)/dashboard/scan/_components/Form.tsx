@@ -67,7 +67,7 @@ export function ProfileForm(props: any) {
       console.log(body.data);
       try {
       const addtoqueue = await fetch(
-        `https://52.66.240.88/api/v1/scanqueue?id=${body.data._id}`,
+        `https://13.232.109.53/api/v1/scanqueue?id=${body.data._id}`,
         {
           method: "GET",
         }
