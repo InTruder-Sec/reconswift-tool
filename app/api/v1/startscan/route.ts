@@ -14,7 +14,7 @@ export async function POST(req: Request) {
         });
     } catch (error) {
         console.log(error);
-        return new Response("Something went wrong!", {
+        return new Response(`Something went wrong! Error: ${error}`, {
             status: 500,
         });
     }
