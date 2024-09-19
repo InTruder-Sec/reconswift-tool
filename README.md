@@ -24,7 +24,7 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=REDACTED
 CLERK_SECRET_KEY=REDACTED
 WEBHOOK_SECRET=REDACTED
 MONGODB_URI=mongodb+srv:/REDACTED.mongodb.net/?retryWrites=true&w=majority
-SERVER_URL=http://localhost:5000
+BACKEND_ORIGIN=http://localhost:80    //Where https://github.com/InTruder-Sec/reconswift is deployed
 ```
 
 ### 🏗️ Project Architecture

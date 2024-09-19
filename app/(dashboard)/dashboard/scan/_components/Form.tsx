@@ -66,18 +66,16 @@ export function ProfileForm(props: any) {
     if (res.status === 200) {
       console.log(body.data);
       try {
-      const addtoqueue = await fetch(
-        `https://3.111.197.6/api/v1/scanqueue?id=${body.data._id}`,
-        {
-          method: "GET",
-        }
-      );
-      if (addtoqueue.status === 200) {
-        toast.success("Scan added to queue! A scan takes 5-10 minutes to complete once started. Sit back and relax!");
-        // useEffect(() => {
-          fetchScans(props.setdata, props.setisLoading);
-        // })
-      } 
+        let addtoqueue = await fetch("/api/v1/startscan", {
+          method: "POST",
+          body: JSON.stringify({scanId: body.data.scanId})
+        })
+        if (addtoqueue.status === 200) {
+          toast.success("Scan added to queue! Checkout downloads tab for progress.");
+          // useEffect(() => {
+            fetchScans(props.setdata, props.setisLoading);
+          // })
+        } 
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong! Please try again.");
