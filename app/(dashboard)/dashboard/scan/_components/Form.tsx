@@ -40,11 +40,11 @@ export function ProfileForm(props: any) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    if(values.scanType == "") {
+    if (values.scanType == "") {
       toast.error("Please select a scan type.");
       return;
     }
-    if(values.scanType === "Full Scan" || values.scanType === "Advanced Scan") {
+    if (values.scanType === "Full Scan" || values.scanType === "Advanced Scan") {
       toast.info("Full Scan and Advanced Scan is currently disabled. Please select Quick Scan for now.");
       return;
     }
@@ -68,24 +68,24 @@ export function ProfileForm(props: any) {
       try {
         let addtoqueue = await fetch("/api/v1/startscan", {
           method: "POST",
-          body: JSON.stringify({scanId: body.data.scanId})
+          body: JSON.stringify({ scanId: body.data.scanId })
         })
         if (addtoqueue.status === 200) {
-          toast.success("Scan added to queue! Checkout downloads tab for progress.");
+          toast.success("Scan added to queue! Checkout history tab for status.");
           // useEffect(() => {
-            fetchScans(props.setdata, props.setisLoading);
+          fetchScans(props.setdata, props.setisLoading);
           // })
-        } 
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong! Please try again.");
-      // Update scan as failed
-      let res = await fetch("/api/v1/failedscan", {
-        method: "POST",
-        body: JSON.stringify({scanId: body.data.scanId})
-      })
-    }
-      
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong! Please try again.");
+        // Update scan as failed
+        let res = await fetch("/api/v1/failedscan", {
+          method: "POST",
+          body: JSON.stringify({ scanId: body.data.scanId })
+        })
+      }
+
     } else {
       toast.error(body.message);
     }

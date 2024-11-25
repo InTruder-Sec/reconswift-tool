@@ -12,8 +12,10 @@ export default async function Page() {
         <div className="w-11/12 mx-auto sm:9/12 md:w-7/12 mt-5  sm:mx-5 p-5 g-white shadow-2xl z-10 relative bg-white rounded-md border border-gray-200">
           <Welcome />
           <span className="block text-sm font-semibold my-4">
-            Welcome to dashboard, organize, keep track and start new scans. Get
-            started by navigating to the scanning tab on navigation panel.
+            Welcome to dashboard, organize, keep track and start new scans🚀.
+            Currently we are limited to IP and subdomains enumeration.
+            We are working on adding more features and tools to make your experience better.
+            Please feel free to contribute and suggest new features on out GitHub repository.
           </span>
           <span className="block text-sm ">
             Upgrade now ✨ to experience the power of ReconSwift. Get unlimited

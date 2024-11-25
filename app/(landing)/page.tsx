@@ -7,6 +7,8 @@ import ClickHandlers from "@/components/ClickHandlers";
 import Link from "next/link";
 
 async function Home() {
+
+
   return (
     <>
       <Navbar />
