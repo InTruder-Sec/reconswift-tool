@@ -1,10 +1,10 @@
-# reconswift-tool
+# Reconswift - Security Reconnaissance Automation Tool
 
-Discover Assess and Secure Test the Web Safely with ReconSwift. ReconSwift the automated reconnaissance platform serves as an indispensable tool for bug bounty hunters by streamlining and expediting the initial phase of their security assessments.
+Web Framework to automate security reconnaissance that reduced manual effort for security researchers enumerating IP addresses and active subdomains 50% more accuretly. This is a multi-repo project and the independent expressJs backend can be found [here](https://github.com/InTruder-Sec/reconswift). The project uses NextJs & ShadCN for optimized frontend experience.
 
-### 🔗 Link
+### 🔗 Experience it live
 
-[Deploy Link](https://reconswift.vercel.app/)
+Do check out the live deployment here - [Deploy Link](https://reconswift.deepdhakate.in/)
 
 ### 💻 Local Environment
 
@@ -17,7 +17,8 @@ npm start
 
 **Back-End**
 
-_⚠️Note: You will require a `.env.local` file with the following values_
+> [!IMPORTANT]  
+> You will require a `.env.local` file with the following values_
 
 ```
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=REDACTED
