@@ -19,8 +19,8 @@ export async function POST(request: Request, response: Response) {
     })
 
     const details = {
-      totalScans: user.scanHistory.length,
-      scanTime: user.scanTime,
+      totalScans: user?.scanHistory?.length,
+      scanTime: user?.scanTime,
     }
 
 
