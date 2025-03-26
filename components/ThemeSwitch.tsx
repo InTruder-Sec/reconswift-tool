@@ -11,8 +11,6 @@ interface ThemeSwitchProps {
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ className }) => {
   const { theme, setTheme } = useTheme();
 
-  setTheme(localStorage.getItem("theme") || "dark");
-
   return (
     <>
       <Classic

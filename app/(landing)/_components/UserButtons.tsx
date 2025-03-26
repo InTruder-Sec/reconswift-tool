@@ -1,5 +1,5 @@
 "use client";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import React, { SetStateAction } from "react";
 
 async function UserButtons() {
