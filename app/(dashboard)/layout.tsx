@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="bg-reconswiftPrimary dark:bg-reconswiftDarkPrimary">
       <img
         src="/background.png"
         alt="background"
@@ -117,6 +117,6 @@ export default function RootLayout({
           {children}
         </div>
       </div>
-    </>
+    </div>
   );
 }

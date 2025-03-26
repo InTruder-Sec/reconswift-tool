@@ -1,11 +1,11 @@
 import { connectToDatabase } from "@/lib/auth/connection";
 import Scan from "@/model/UserScans";
 import UserData from "@/model/UserSchema";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 export async function POST(req: Request, response: Response) {
-  const user = auth();
+  const user = await auth();
   const id = user.userId;
   await connectToDatabase();
   if (!id) {
@@ -34,7 +34,6 @@ export async function POST(req: Request, response: Response) {
       });
     });
 
-    // Update user scan history array
     await UserData.updateOne(
       { _id: userDetails?._id },
       { $push: { scanHistory: scan._id } }
@@ -43,13 +42,32 @@ export async function POST(req: Request, response: Response) {
       message: "Scan added to queue",
       data: scan,
     };
-    // return new Response("", {
-    //   statusText: JSON.stringify(responseText),
-    //   status: 200,
-    // });
+    
     return new Response(JSON.stringify(responseText), {
       status: 200,
-    });
+      });
+
+    // Update user scan history array
+    // if(scan) {
+    //   await UserData.updateOne(
+    //     { _id: userDetails?._id },
+    //     { $push: { scanHistory: scan._id } }
+    //   );
+    //   const responseText = {
+    //     message: "Scan added to queue",
+    //     data: scan,
+    //   };
+      
+    //   return new Response(JSON.stringify(responseText), {
+    //     status: 200,
+    //     });
+    
+    
+    // } else {
+    //   return new Response("Scan creation failed", {
+    //     status: 400,
+    //   });
+    // }
   } catch (error) {
     console.log(error);
     return new Response("Something went wrong", {

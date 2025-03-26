@@ -2,7 +2,9 @@
 import { UserButton } from "@clerk/nextjs";
 import {
   Component,
+  GitBranch,
   History,
+  LayoutDashboard,
   MessageSquare,
   ScanLine,
 } from "lucide-react";
@@ -16,55 +18,27 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { toast } from "sonner";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 function SideBar() {
   let pathname = usePathname().split("/")[2];
 
-  let margin = "mt-6";
-  if (pathname === "scan") {
-    margin = "mt-[83px]";
-  } else if (pathname === "history") {
-    margin = "mt-[154px]";
-  } else if (pathname === "feedback") {
-    margin = "mt-[224px]";
-  } else if (pathname === "pro") {
-    margin = "mt-[298px]";
-  } else {
-    margin = "mt-[12px]";
-  }
+  const getActiveClass = (path: string) => {
+    return pathname === path
+      ? "relative after:absolute after:left-[-2rem] after:top-3 after:transform after:-translate-y-1/2 after:w-4 after:h-4 after:rounded-full after:bg-gradient-to-r after:from-blue-700 after:to-sky-300 after:opacity-80 after:animate-bounce"
+      : "";
+  };
 
   return (
     <>
-      <aside className="hidden flex-col justify-between  h-full sm:flex">
-        <div className="flex flex-col justify-between h-80 mt-6 px-6">
-          <div
-            className={`ease-linear duration-500 animate-bounce  -z-10 opacity-80 active w-4 h-4 rounded-full  bg-gradient-to-r from-blue-700 to-sky-300 absolute -ml-8 ${margin}`}
-          ></div>
+      <aside className="hidden flex-col justify-between h-full sm:flex">
+        <div className="flex flex-col gap-4 justify-between h-80 mt-6 px-6">
           <Link href="/dashboard/home">
-            <div>
+            <div className={getActiveClass("home")}>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <svg
-                      width="32"
-                      height="32"
-                      viewBox="0 0 42 42"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M15.75 28C17.2382 29.103 19.0481 29.75 21 29.75C22.9519 29.75 24.7618 29.103 26.25 28"
-                        stroke="black"
-                        strokeWidth="3.75"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M38.5 21.3568V24.0188C38.5 30.8452 38.5 34.2585 36.4497 36.3792C34.3996 38.5 31.0996 38.5 24.5 38.5H17.5C10.9003 38.5 7.60051 38.5 5.55025 36.3792C3.5 34.2585 3.5 30.8452 3.5 24.0188V21.3568C3.5 17.3521 3.5 15.3497 4.4086 13.6898C5.3172 12.0299 6.97716 10.9996 10.2971 8.93923L13.7971 6.76702C17.3064 4.58901 19.0612 3.5 21 3.5C22.9388 3.5 24.6935 4.58901 28.203 6.76702L31.703 8.93921C35.0229 10.9996 36.6828 12.0299 37.5914 13.6898"
-                        stroke="black"
-                        strokeWidth="3.75"
-                        strokeLinecap="round"
-                      />
-                    </svg>
+                    <LayoutDashboard size={32} />
                   </TooltipTrigger>
                   <TooltipContent>
                     <div>Home</div>
@@ -75,7 +49,7 @@ function SideBar() {
           </Link>
 
           <Link href="/dashboard/scan">
-            <div>
+            <div className={getActiveClass("scan")}>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
@@ -88,8 +62,9 @@ function SideBar() {
               </TooltipProvider>
             </div>
           </Link>
+
           <Link href="/dashboard/history">
-            <div>
+            <div className={getActiveClass("history")}>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
@@ -102,36 +77,49 @@ function SideBar() {
               </TooltipProvider>
             </div>
           </Link>
-          {/* <Link href="/dashboard/feedback"> */}
-            <div onClick={() => {toast.info("We value your feedback, but please wait till this feature is activated!")}}>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <MessageSquare size={32} />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <div>Feedback</div>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-          {/* </Link> */}
-          {/* <Link href="/dashboard/pro"> */}
-            <div onClick={() => {toast.info("Reconswift is currently free. Pro version coming soon!")}}>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Component size={32} />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <div>Upgrade</div>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-          {/* </Link> */}
+
+          <div
+            className={getActiveClass("workflow")}
+            onClick={() => {
+              toast.info(
+                "Workflow comming soon!"
+              );
+            }}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                <GitBranch size={32} />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <div>Workflow</div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+
+          <div
+            className={getActiveClass("pro")}
+            onClick={() => {
+              toast.info(
+                "Reconswift is currently free. Pro version coming soon!"
+              );
+            }}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Component size={32} />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <div>Upgrade</div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
-        <div className="profile scale-125 ml-8 mt-20 ">
+        <div className="profile scale-125 mt-20 flex flex-col items-center justify-center">
+          <ThemeSwitch className="mb-4 text-2xl" />
           <UserButton afterSignOutUrl="/" />
         </div>
       </aside>

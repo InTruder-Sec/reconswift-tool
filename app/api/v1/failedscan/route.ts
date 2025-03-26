@@ -1,11 +1,11 @@
 import { connectToDatabase } from "@/lib/auth/connection";
 import Scan from "@/model/UserScans";
 import UserData from "@/model/UserSchema";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 export async function POST(req: Request, response: Response) {
-  const user = auth();
+  const user = await auth();
   const id = user.userId;
   await connectToDatabase();
   if (!id) {

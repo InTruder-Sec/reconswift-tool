@@ -3,13 +3,13 @@ import { Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { Toaster } from "sonner";
-import { ClerkProvider } from "@clerk/nextjs";
+import "@theme-toggles/react/css/Expand.css";
+import ClerkProviderWithTheme from "@/components/ClerkProviderWithTheme";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
-
 
 export const metadata: Metadata = {
   title: "ReconSwift - Automated Reconnaissance Framework",
@@ -44,30 +44,26 @@ export const metadata: Metadata = {
   ],
 };
 
-
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <ClerkProvider>
-        <html lang="en" suppressHydrationWarning>
-          <body className={poppins.className}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <Toaster richColors />
-              {children}
-            </ThemeProvider>
-          </body>
-        </html>
-      </ClerkProvider>
-    </>
+    <html lang="en" suppressHydrationWarning>
+      <body className={poppins.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ClerkProviderWithTheme>
+            <Toaster className="dark:bg-reconswiftDarkPrimary dark:text-white" />
+            {children}
+          </ClerkProviderWithTheme>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

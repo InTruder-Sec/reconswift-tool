@@ -12,8 +12,6 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 
 import React, { ReactElement, SetStateAction, useEffect } from "react";
-import UserData from "@/model/UserSchema";        
-import { useAuth} from "@clerk/nextjs";
 
 type analyticsType = {
   title: string;
@@ -110,23 +108,23 @@ function SkeletonCard() {
 
 function AnalyticsCard(props: analyticsType) {
   return (
-    <section className="mx-auto">
-      <div className="hover:scale-105 duration-200  col-span-full w-72 xl:col-span-8 bg-white shadow-2xl  mt-6 sm:m-5 rounded-md border border-gray-200">
+    <section className="mx-auto ">
+      <div className="hover:scale-105 duration-200  col-span-full w-72 xl:col-span-8 bg-white dark:bg-reconswiftDarkPrimary shadow-2xl  mt-6 sm:m-5 rounded-md border border-gray-200">
         <div className="px-5 pt-5">
           <div className="flex items-center">
-            <div className="flex items-center justify-center w-14 h-14 rounded-full bg-indigo-100 text-indigo-500">
+            <div className="flex items-center justify-center w-14 h-14 rounded-full bg-indigo-100 text-indigo-500 dark:bg-blue-100 dark:text-black">
               {props.icon}
             </div>
             <div className="ml-5">
-              <h4 className="text-2xl font-semibold text-gray-700  overflow-scroll w-10/12 no-scrollbar"  >
+              <h4 className="text-2xl font-semibold text-gray-700 dark:text-white overflow-scroll w-10/12 no-scrollbar"  >
                 {props.value}
               </h4>
-              <div className="text-gray-500">{props.title}</div>
+              <div className="text-gray-500 dark:text-white">{props.title}</div>
             </div>
           </div>
         </div>
-        <div className="px-5 py-3 bg-gray-100 mt-4">
-          <div className="flex items-center text-sm text-gray-600">
+        <div className="px-5 py-3 bg-gray-100 dark:bg-gray-700  mt-4">
+          <div className="flex items-center text-sm text-gray-600 dark:text-white">
             {props.subIcon}
             <div>{props.subtitle}</div>
           </div>
