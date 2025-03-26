@@ -1,6 +1,4 @@
-import { currentUser, useUser } from "@clerk/nextjs";
-import User from "@/model/UserSchema";
-import { connectToDatabase } from "../auth/connection";
+import { useUser } from "@clerk/nextjs";
 
 const getuserScans = async () => {
   const user = useUser();

@@ -2,7 +2,6 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import User from "@/model/UserSchema";
-import mongoose from "mongoose";
 import { connectToDatabase } from "@/lib/auth/connection";
 
 export async function POST(req: Request) {

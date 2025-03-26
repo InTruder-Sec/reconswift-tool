@@ -105,7 +105,7 @@ const columns: ColumnDef<Payment>[] = [
     accessorKey: "reportUrl",
     header: "Report",
     cell: ({ row }) => (
-      <Button variant="link" className="bg-sky-200 " onClick={() => {if(row.getValue("reportUrl") == "") {toast.info("Scan is in queue. Please wait!")} else {window.open(row.getValue("reportUrl"), "_blank")} }} >
+      <Button variant="link" className="bg-sky-200 dark:bg-reconswiftSecondary dark:text-black" onClick={() => {if(row.getValue("reportUrl") == "") {toast.info("Scan is in queue. Please wait!")} else {window.open(row.getValue("reportUrl"), "_blank")} }} >
         Download Report
       </Button>
     ),
