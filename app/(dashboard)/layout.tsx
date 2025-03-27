@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import FeedbackWrapper from "@/components/ui/feedback";
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="bg-reconswiftPrimary dark:bg-reconswiftDarkPrimary">
+      <FeedbackWrapper />
       <img
         src="/background.png"
         alt="background"

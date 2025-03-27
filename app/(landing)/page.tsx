@@ -66,7 +66,7 @@ async function Home() {
             identify potential vulnerabilities, and generate detailed reports.
           </div>
           <Link href="/signup">
-            <Button className="mt-20 duration-200 font-semibold  text-base p-6 px-8 bg-reconswiftThemeColor dark:bg-reconswiftThemeColorDark hover:bg-reconswiftThemeColorSecondary dark:hover:bg-reconswiftThemeColorDarkSecondary">
+            <Button className="mt-20 duration-200 font-semibold  text-base p-6 px-8 bg-reconswiftThemeColorDarkSecondary text-black dark:bg-reconswiftThemeColorDark hover:bg-reconswiftThemeColorDark dark:hover:bg-reconswiftThemeColorDarkSecondary">
               Try Now!
             </Button>
           </Link>
